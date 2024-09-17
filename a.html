@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Element Selector Practice</title>
+    <style>
+        .container {
+            background-color: lightgray;
+            padding: 20px;
+        }
+        .text-content {
+            color: black;
+        }
+        #main-image {
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-heading">Original Heading</h1>
+    <p class="text-content">First paragraph with class text-content.</p>
+    <p class="text-content">Second paragraph with class text-content.</p>
+    <p>Third paragraph without the class.</p>
+    <img id="main-image" src="https://via.placeholder.com/150" alt="Placeholder Image">
+
+    <div class="container">
+        <p>Paragraph inside the container div.</p>
+        <p>Another paragraph inside the container div.</p>
+        <img src="https://via.placeholder.com/100" alt="Another Placeholder Image">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Change the text of the heading
+            const heading = document.getElementById('main-heading');
+            heading.textContent = 'Updated Heading';
+
+            // Change the color of paragraphs with the class text-content
+            const textContentParagraphs = document.getElementsByClassName('text-content');
+            for (const p of textContentParagraphs) {
+                p.style.color = 'blue';
+            }
+
+            // Change the source of the image with the id main-image
+            const mainImage = document.getElementById('main-image');
+            mainImage.src = 'th.jpeg';
+
+            // Change the background color of the div with the class container
+            const container = document.querySelector('.container');
+            container.style.backgroundColor = 'lightgreen';
+
+            // Change the text of all paragraphs inside the container div
+            const containerParagraphs = container.querySelectorAll('p');
+            containerParagraphs.forEach(p => {
+                p.textContent = 'Updated text inside container';
+            });
+        });
+    </script>
+</body>
+</html>
