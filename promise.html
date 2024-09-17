@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data with Promises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        
+        #dataDisplay {
+            margin-top: 20px;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fetch Random Dog Image</h1>
+    <button id="fetchButton">Fetch Image</button>
+    <div id="dataDisplay"></div>
+
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', fetchData);
+
+        function fetchData() {
+            const url = 'https://dog.ceo/api/breeds/image/random';
+            const dataDisplay = document.getElementById('dataDisplay');
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const imageUrl = data.message;
+                    dataDisplay.innerHTML = `<img src="${imageUrl}" alt="Random Dog">`;
+                })
+                .catch(error => {
+                    dataDisplay.innerHTML = `<p>Error: ${error.message}</p>`;
+                });
+        }
+    </script>
+</body>
+</html>
