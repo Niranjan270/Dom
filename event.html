@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Event Handlers</title>
+    <style>
+        .message {
+            display: none;
+            color: green;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .button-container {
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button id="btn1" class="btn">Button 1</button>
+        <span id="msg1" class="message">You hovered over Button 1!</span>
+    </div>
+    
+    <div class="button-container">
+        <button id="btn2" class="btn">Button 2</button>
+        <span id="msg2" class="message">You hovered over Button 2!</span>
+    </div>
+    
+    <div class="button-container">
+        <button id="btn3" class="btn">Button 3</button>
+        <span id="msg3" class="message">You hovered over Button 3!</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.btn');
+
+            // Event handling for each button
+            buttons.forEach(button => {
+                // Mouseover event: Display a message near the button
+                button.addEventListener('mouseover', () => {
+                    const message = document.getElementById('msg' + button.id.slice(-1));
+                    message.style.display = 'inline';
+                });
+
+                // Mouseout event: Hide the displayed message
+                button.addEventListener('mouseout', () => {
+                    const message = document.getElementById('msg' + button.id.slice(-1));
+                    message.style.display = 'none';
+                });
+
+                // Click event: Change the button color
+                button.addEventListener('click', () => {
+                    button.style.backgroundColor = 'blue';
+                    button.style.color = 'white';
+                });
+
+                // Double-click event: Hide the button
+                button.addEventListener('dblclick', () => {
+                    button.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
